@@ -44,52 +44,7 @@ const printMatrix = (matrix: Matrix) => {
   console.log('\n')
 };
 
-const stepByStep = (input: Matrix) => {
-    const matrix = input.map(row => [...row]);
-
-    printMatrix(matrix);
-    // Paso por paso:
-
-    // Dividir toda la primera fila para obtener el primer pivote:
-    if(matrix[0][0] != 1) {
-        const pivot = matrix[0][0]
-        for(let i = 0; i < matrix[0].length; i++) {
-            matrix[0][i] = matrix[0][i]/pivot 
-        }
-    }
-
-    // printMatrix(matrix);
-
-    // F2 + xF1 = 0
-    let x = -matrix[1][0]/matrix[0][0];
-    matrix[1] = matrix[1].map((n, i) => {
-        return n + (x*matrix[0][i])
-    })
-
-    // printMatrix(matrix)
-
-
-    // F3 + xF1 = 0
-    x = -matrix[2][0]/matrix[0][0];
-    matrix[2] = matrix[2].map((n, i) => {
-        return n + (x*matrix[0][i])
-    })
-
-    // printMatrix(matrix)
-
-    // Aquí termina la primera columna
-
-    // Empieza la segunda columna
-    if(matrix[1][1] != 1) {
-        const pivot = matrix[1][1]
-        for(let i = 0; i < matrix[1].length; i++) {
-            matrix[1][i] = matrix[1][i]/pivot 
-        }
-    }
-    printMatrix(matrix)
-}
-
-const dynamic = (input: Matrix) => {
+const gaussJordan = (input: Matrix) => {
     const matrix = input.map(row => [...row]);
 
     console.log('Matriz inicial:')
@@ -148,5 +103,4 @@ const dynamic = (input: Matrix) => {
 
 
 
-//stepByStep()
-dynamic(matrix3)
+gaussJordan(matrix3)
